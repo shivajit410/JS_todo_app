@@ -1,0 +1,192 @@
+@import "./resets";
+@import "./variables";
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background: $background-color;
+  color: $text-color;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: $maximum-width;
+}
+
+.header {
+  @include flexCenter;
+  padding: 25px;
+  background: $header-bg-color;
+  background-image: linear-gradient(
+    to right,
+    $background-color,
+    $header-bg-color
+  );
+  width: 100%;
+  -webkit-text-stroke: 1px $border-text-color;
+}
+
+.add-task {
+  @include flexCenter();
+  padding: 25px;
+  background: lighten($color: $background-color, $amount: 100%);
+  color: darken($color: $text-color, $amount: 100%);
+  width: 100%;
+
+  input {
+    border: 0;
+    border-bottom: 1px solid $background-color;
+    outline: none;
+    transition: border 150ms ease-in-out;
+
+    &::placeholder {
+      opacity: 1;
+      transition: opacity 150ms ease-in-out;
+    }
+
+    &:focus {
+      border-bottom-width: 2px;
+    }
+
+    &:focus::placeholder {
+      opacity: 0.5;
+    }
+  }
+}
+
+.add-task-btn {
+  border: 0;
+  background: 0;
+  color: $background-color;
+  cursor: pointer;
+  outline: none;
+  transition: color 150ms ease-in-out;
+
+  &:hover {
+    color: $header-bg-color;
+  }
+  &:active {
+    color: $border-text-color;
+  }
+}
+
+.task-list-header {
+  position: relative;
+  width: 100%;
+
+  h2 {
+    @include flexCenter();
+    padding: 4px;
+    background: $header-bg-color;
+    background-image: linear-gradient(
+      to right $background-color,
+      $header-bg-color
+    );
+    color: $text-color;
+    width: 100%;
+    -webkit-text-stroke: 1px $border-text-color;
+  }
+}
+
+.remove-complete-btn {
+  position: absolute;
+  right: 5vw;
+  top: 14px;
+  border: 0;
+  background: 0;
+  color: $text-color;
+  font-size: 0.5em;
+  cursor: pointer;
+  transition: color 150ms ease-in-out;
+  outline: none;
+
+  &:hover {
+    color: $background-color;
+  }
+  &:active {
+    color: $border-text-color;
+  }
+}
+
+.task-list-wrapper {
+  background: lighten($color: $background-color, $amount: 100%);
+  color: darken($color: $text-color, $amount: 100%);
+  width: 100%;
+}
+
+.task-list {
+  padding: 15px 25px 25px 25px;
+
+  li {
+    list-style-type: none;
+    cursor: pointer;
+    padding: 10px 0;
+    border-bottom: 1px solid #7474743b;
+
+    &:hover .custom-checkbox {
+      transform: scale(1.2);
+      color: $header-bg-color;
+    }
+
+    &:active .custom-checkbox {
+      transform: scale(1);
+      color: $text-color;
+      opacity: 0.6;
+    }
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  label {
+    position: relative;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 150ms ease-in-out;
+    transition: color 150ms ease-in-out;
+
+    &:hover {
+      color: $header-bg-color;
+    }
+  }
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+  transform: scale(1);
+  color: $border-text-color;
+  opacity: 0.6;
+}
+[type="checkbox"]:checked + label .check-mark,
+[type="checkbox"]:checked + label {
+  opacity: 0.6;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  margin-right: 0.5em;
+  cursor: pointer;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: transform 200ms ease-in-out;
+}
+
+.check-mark {
+  position: absolute;
+  bottom: 5px;
+  left: 2px;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  z-index: 1;
+}
+
+.test-css__autocomplete {
+  color: blue;
+}
